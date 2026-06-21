@@ -22,7 +22,7 @@ let direction = { x: 1, y: 0 }; // moving right initially
 function init() {
   // Set up the initial snake position and place the first food
   drawBackground();
-  jon.drawHeadLeft();
+  jon.drawHeadDown();
   mouse.initPos();
   console.log("posX:" + mouse.posX);
   mouse.drawApple();

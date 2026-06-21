@@ -362,4 +362,11 @@ export class Snake {
     );
     this.ctx.fill();
   }
+
+  drawBodyPart() {
+    this.ctx.fillStyle = "#ea4695ff";
+    this.ctx.beginPath();
+    this.ctx.roundRect(this.startX, this.startY, this.pixels, this.pixels);
+    this.ctx.fill();
+  }
 }
