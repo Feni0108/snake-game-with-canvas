@@ -21,9 +21,7 @@ let mouse = new Apple(ctx, pixels, canvas.width);
 function init() {
   // Set up the initial snake position and place the first food
   jon.initSnake();
-  //jon.drawHeadDown();
-  //mouse.initPos();
-  //mouse.drawApple();
+  mouse.initPos();
 }
 
 function draw() {
@@ -34,8 +32,9 @@ function draw() {
 
 function gameLoop() {
   drawBackground();
-  jon.drawHead();
+  mouse.drawApple();
   jon.update();
+  jon.drawHead();
   draw();
 }
 
@@ -57,6 +56,11 @@ function drawBackground() {
 document.addEventListener("keydown", (e) => {
   // Change direction based on arrow keys
   // Hint: prevent the snake from reversing direction!
+  console.log("key pressed:", e.key);
+  if (e.key === "ArrowRight") jon.changeDirection({ x: 1, y: 0 });
+  if (e.key === "ArrowLeft") jon.changeDirection({ x: -1, y: 0 });
+  if (e.key === "ArrowUp") jon.changeDirection({ x: 0, y: -1 });
+  if (e.key === "ArrowDown") jon.changeDirection({ x: 0, y: 1 });
 });
 
 // --- Start ---

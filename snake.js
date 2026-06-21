@@ -394,6 +394,18 @@ export class Snake {
     this.direction = { x: 1, y: 0 }; // moving down initially
   }
 
+  changeDirection(newDirection) {
+    if (
+      newDirection.x + this.direction.x == 0 ||
+      newDirection.y + this.direction.y == 0
+    ) {
+      return;
+    } else {
+      this.direction.x = newDirection.x;
+      this.direction.y = newDirection.y;
+    }
+  }
+
   update() {
     // 1. Calculate the new head position using direction
     this.startX += this.direction.x * this.pixels;
