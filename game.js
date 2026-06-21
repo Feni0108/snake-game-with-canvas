@@ -8,33 +8,22 @@ const ctx = canvas.getContext("2d");
 
 const pixels = canvas.width / 10; // size of each cell in pixels
 
-let jon = new Snake("Jon", ctx, pixels, canvas.width);
-let mouse = new Apple(ctx, pixels, canvas.width);
-
 // --- Game State ---
 // Hint: think of the snake as an array of {x, y} objects
 let snake = [];
 let food = {};
-let direction = { x: 1, y: 0 }; // moving right initially
+
+let jon = new Snake("Jon", ctx, pixels, canvas.width);
+let mouse = new Apple(ctx, pixels, canvas.width);
 
 // --- Functions to implement ---
 
 function init() {
   // Set up the initial snake position and place the first food
-  drawBackground();
-  jon.drawHeadDown();
-  mouse.initPos();
-  console.log("posX:" + mouse.posX);
-  mouse.drawApple();
-  console.log("posX:" + mouse.posX);
-}
-
-function update() {
-  // 1. Calculate the new head position using direction
-  // 2. Check for collisions (walls, self)
-  // 3. Check if the snake ate the food
-  // 4. Add new head to the front of the snake array
-  // 5. Remove the tail (unless food was eaten)
+  jon.initSnake();
+  //jon.drawHeadDown();
+  //mouse.initPos();
+  //mouse.drawApple();
 }
 
 function draw() {
@@ -44,7 +33,9 @@ function draw() {
 }
 
 function gameLoop() {
-  update();
+  drawBackground();
+  jon.drawHead();
+  jon.update();
   draw();
 }
 
@@ -70,4 +61,4 @@ document.addEventListener("keydown", (e) => {
 
 // --- Start ---
 init();
-setInterval(gameLoop, 150); // runs ~6-7 times per second
+setInterval(gameLoop, 1000); // runs ~6-7 times per second

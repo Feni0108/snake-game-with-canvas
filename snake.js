@@ -5,18 +5,19 @@ export class Snake {
   canvasWidth;
   startX;
   startY;
+  direction;
 
   constructor(name, ctx, pixels, canvasWidth) {
     this.name = name;
     this.ctx = ctx;
     this.pixels = pixels;
     this.canvasWidth = canvasWidth;
-    this.startX = this.canvasWidth / 2;
-    this.startY = this.canvasWidth / 2;
   }
 
+  // Drawing on canvas all bodyparts
   drawHeadDown() {
     this.ctx.fillStyle = "#ea4695ff";
+    this.ctx.beginPath();
     this.ctx.roundRect(
       this.startX,
       this.startY,
@@ -104,6 +105,7 @@ export class Snake {
 
   drawHeadRight() {
     this.ctx.fillStyle = "#ea4695ff";
+    this.ctx.beginPath();
     this.ctx.roundRect(
       this.startX,
       this.startY,
@@ -191,6 +193,7 @@ export class Snake {
 
   drawHeadLeft() {
     this.ctx.fillStyle = "#ea4695ff";
+    this.ctx.beginPath();
     this.ctx.roundRect(
       this.startX,
       this.startY,
@@ -278,6 +281,7 @@ export class Snake {
 
   drawHeadUp() {
     this.ctx.fillStyle = "#ea4695ff";
+    this.ctx.beginPath();
     this.ctx.roundRect(
       this.startX,
       this.startY,
@@ -363,10 +367,40 @@ export class Snake {
     this.ctx.fill();
   }
 
+  drawHead() {
+    if (this.direction.x == 1) {
+      this.drawHeadRight();
+    } else if (this.direction.x == -1) {
+      this.drawHeadLeft();
+    } else if (this.direction.y == 1) {
+      this.drawHeadDown();
+    } else if (this.direction.y == -1) {
+      this.drawHeadUp();
+    }
+  }
+
   drawBodyPart() {
     this.ctx.fillStyle = "#ea4695ff";
     this.ctx.beginPath();
     this.ctx.roundRect(this.startX, this.startY, this.pixels, this.pixels);
     this.ctx.fill();
+  }
+
+  // Logic
+
+  initSnake() {
+    this.startX = this.canvasWidth / 2;
+    this.startY = this.canvasWidth / 2;
+    this.direction = { x: 1, y: 0 }; // moving down initially
+  }
+
+  update() {
+    // 1. Calculate the new head position using direction
+    this.startX += this.direction.x * this.pixels;
+    this.startY += this.direction.y * this.pixels;
+    // 2. Check for collisions (walls, self)
+    // 3. Check if the snake ate the food
+    // 4. Add new head to the front of the snake array
+    // 5. Remove the tail (unless food was eaten)
   }
 }
