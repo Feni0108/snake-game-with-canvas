@@ -7,7 +7,7 @@ const canvas = /** @type {HTMLCanvasElement} */ (
 const ctx = canvas.getContext("2d");
 const scoreBoard = document.getElementById("scoreBoard");
 
-const pixels = canvas.width / 10; // size of each cell in pixels
+const pixels = canvas.width / 20; // size of each cell in pixels
 
 // --- Game State ---
 // Hint: think of the snake as an array of {x, y} objects
@@ -79,4 +79,4 @@ document.addEventListener("keydown", (e) => {
 
 // --- Start ---
 init();
-const gameInterval = setInterval(gameLoop, 500);
+const gameInterval = setInterval(gameLoop, 300);
