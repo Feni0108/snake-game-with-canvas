@@ -29,6 +29,12 @@ function checkIfTheSnakeAte() {
 }
 
 function gameLoop() {
+  if (jon.checkWalls()) {
+    clearInterval(gameInterval);
+    console.log("GAME OVER");
+    return; // stop executing the rest of gameLoop
+  }
+
   drawBackground();
 
   const didTheSnakeAte = checkIfTheSnakeAte();
@@ -70,4 +76,4 @@ document.addEventListener("keydown", (e) => {
 
 // --- Start ---
 init();
-setInterval(gameLoop, 1000); // runs ~6-7 times per second
+const gameInterval = setInterval(gameLoop, 500);
