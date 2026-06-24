@@ -29,7 +29,7 @@ function checkIfTheSnakeAte() {
 }
 
 function gameLoop() {
-  if (jon.checkWalls()) {
+  if (jon.checkWalls() || jon.checkItself()) {
     clearInterval(gameInterval);
     console.log("GAME OVER");
     return; // stop executing the rest of gameLoop
@@ -67,7 +67,6 @@ function drawBackground() {
 document.addEventListener("keydown", (e) => {
   // Change direction based on arrow keys
   // Hint: prevent the snake from reversing direction!
-  console.log("key pressed:", e.key);
   if (e.key === "ArrowRight") jon.changeDirection({ x: 1, y: 0 });
   if (e.key === "ArrowLeft") jon.changeDirection({ x: -1, y: 0 });
   if (e.key === "ArrowUp") jon.changeDirection({ x: 0, y: -1 });
