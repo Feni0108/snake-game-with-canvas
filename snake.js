@@ -3,9 +3,8 @@ export class Snake {
   ctx;
   pixels;
   canvasWidth;
-  startX;
-  startY;
   direction;
+  body;
 
   constructor(name, ctx, pixels, canvasWidth) {
     this.name = name;
@@ -19,8 +18,8 @@ export class Snake {
     this.ctx.fillStyle = "#ea4695ff";
     this.ctx.beginPath();
     this.ctx.roundRect(
-      this.startX,
-      this.startY,
+      this.body[0].x,
+      this.body[0].y,
       this.pixels,
       this.pixels,
       [0, 0, 50, 50],
@@ -30,8 +29,8 @@ export class Snake {
     // Bal szem
     this.ctx.beginPath();
     this.ctx.arc(
-      this.startX + this.pixels * 0.0025,
-      this.startY + this.pixels * 0.25,
+      this.body[0].x + this.pixels * 0.0025,
+      this.body[0].y + this.pixels * 0.25,
       this.pixels * 0.25,
       0,
       Math.PI * 2,
@@ -42,8 +41,8 @@ export class Snake {
     this.ctx.fillStyle = "#f4f4f4ff";
     this.ctx.beginPath();
     this.ctx.arc(
-      this.startX + this.pixels * 0.0025,
-      this.startY + this.pixels * 0.25,
+      this.body[0].x + this.pixels * 0.0025,
+      this.body[0].y + this.pixels * 0.25,
       this.pixels * 0.18,
       0,
       Math.PI * 2,
@@ -54,8 +53,8 @@ export class Snake {
     this.ctx.fillStyle = "#712121ff";
     this.ctx.beginPath();
     this.ctx.ellipse(
-      this.startX + this.pixels * 0.0025,
-      this.startY + this.pixels * 0.25,
+      this.body[0].x + this.pixels * 0.0025,
+      this.body[0].y + this.pixels * 0.25,
       this.pixels * 0.08, // rx — keskeny
       this.pixels * 0.22, // ry — magas
       0,
@@ -68,8 +67,8 @@ export class Snake {
     this.ctx.fillStyle = "#ea4695ff";
     this.ctx.beginPath();
     this.ctx.arc(
-      this.startX + this.pixels * 0.96,
-      this.startY + this.pixels * 0.25,
+      this.body[0].x + this.pixels * 0.96,
+      this.body[0].y + this.pixels * 0.25,
       this.pixels * 0.25,
       0,
       Math.PI * 2,
@@ -80,8 +79,8 @@ export class Snake {
     this.ctx.fillStyle = "#f4f4f4ff";
     this.ctx.beginPath();
     this.ctx.arc(
-      this.startX + this.pixels * 0.96,
-      this.startY + this.pixels * 0.25,
+      this.body[0].x + this.pixels * 0.96,
+      this.body[0].y + this.pixels * 0.25,
       this.pixels * 0.18,
       0,
       Math.PI * 2,
@@ -92,8 +91,8 @@ export class Snake {
     this.ctx.fillStyle = "#712121ff";
     this.ctx.beginPath();
     this.ctx.ellipse(
-      this.startX + this.pixels * 0.96,
-      this.startY + this.pixels * 0.25,
+      this.body[0].x + this.pixels * 0.96,
+      this.body[0].y + this.pixels * 0.25,
       this.pixels * 0.08, // rx — keskeny
       this.pixels * 0.22, // ry — magas
       0,
@@ -107,8 +106,8 @@ export class Snake {
     this.ctx.fillStyle = "#ea4695ff";
     this.ctx.beginPath();
     this.ctx.roundRect(
-      this.startX,
-      this.startY,
+      this.body[0].x,
+      this.body[0].y,
       this.pixels,
       this.pixels,
       [0, 50, 50, 0],
@@ -118,8 +117,8 @@ export class Snake {
     // Bal szem
     this.ctx.beginPath();
     this.ctx.arc(
-      this.startX + this.pixels * 0.24,
-      this.startY + this.pixels * 0.96,
+      this.body[0].x + this.pixels * 0.24,
+      this.body[0].y + this.pixels * 0.96,
       this.pixels * 0.25,
       0,
       Math.PI * 2,
@@ -130,8 +129,8 @@ export class Snake {
     this.ctx.fillStyle = "#f4f4f4ff";
     this.ctx.beginPath();
     this.ctx.arc(
-      this.startX + this.pixels * 0.24,
-      this.startY + this.pixels * 0.96,
+      this.body[0].x + this.pixels * 0.24,
+      this.body[0].y + this.pixels * 0.96,
       this.pixels * 0.18,
       0,
       Math.PI * 2,
@@ -142,8 +141,8 @@ export class Snake {
     this.ctx.fillStyle = "#712121ff";
     this.ctx.beginPath();
     this.ctx.ellipse(
-      this.startX + this.pixels * 0.24,
-      this.startY + this.pixels * 0.96,
+      this.body[0].x + this.pixels * 0.24,
+      this.body[0].y + this.pixels * 0.96,
       this.pixels * 0.22, // rx — keskeny
       this.pixels * 0.08, // ry — magas
       0,
@@ -156,8 +155,8 @@ export class Snake {
     this.ctx.fillStyle = "#ea4695ff";
     this.ctx.beginPath();
     this.ctx.arc(
-      this.startX + this.pixels * 0.24,
-      this.startY + this.pixels * 0.04,
+      this.body[0].x + this.pixels * 0.24,
+      this.body[0].y + this.pixels * 0.04,
       this.pixels * 0.25,
       0,
       Math.PI * 2,
@@ -168,8 +167,8 @@ export class Snake {
     this.ctx.fillStyle = "#f4f4f4ff";
     this.ctx.beginPath();
     this.ctx.arc(
-      this.startX + this.pixels * 0.24,
-      this.startY + this.pixels * 0.04,
+      this.body[0].x + this.pixels * 0.24,
+      this.body[0].y + this.pixels * 0.04,
       this.pixels * 0.18,
       0,
       Math.PI * 2,
@@ -180,8 +179,8 @@ export class Snake {
     this.ctx.fillStyle = "#712121ff";
     this.ctx.beginPath();
     this.ctx.ellipse(
-      this.startX + this.pixels * 0.24,
-      this.startY + this.pixels * 0.04,
+      this.body[0].x + this.pixels * 0.24,
+      this.body[0].y + this.pixels * 0.04,
       this.pixels * 0.22, // rx — keskeny
       this.pixels * 0.08, // ry — magas
       0,
@@ -195,8 +194,8 @@ export class Snake {
     this.ctx.fillStyle = "#ea4695ff";
     this.ctx.beginPath();
     this.ctx.roundRect(
-      this.startX,
-      this.startY,
+      this.body[0].x,
+      this.body[0].y,
       this.pixels,
       this.pixels,
       [50, 0, 0, 50],
@@ -206,8 +205,8 @@ export class Snake {
     // Bal szem
     this.ctx.beginPath();
     this.ctx.arc(
-      this.startX + this.pixels * 0.76,
-      this.startY + this.pixels * 0.96,
+      this.body[0].x + this.pixels * 0.76,
+      this.body[0].y + this.pixels * 0.96,
       this.pixels * 0.25,
       0,
       Math.PI * 2,
@@ -218,8 +217,8 @@ export class Snake {
     this.ctx.fillStyle = "#f4f4f4ff";
     this.ctx.beginPath();
     this.ctx.arc(
-      this.startX + this.pixels * 0.76,
-      this.startY + this.pixels * 0.96,
+      this.body[0].x + this.pixels * 0.76,
+      this.body[0].y + this.pixels * 0.96,
       this.pixels * 0.18,
       0,
       Math.PI * 2,
@@ -230,8 +229,8 @@ export class Snake {
     this.ctx.fillStyle = "#712121ff";
     this.ctx.beginPath();
     this.ctx.ellipse(
-      this.startX + this.pixels * 0.76,
-      this.startY + this.pixels * 0.96,
+      this.body[0].x + this.pixels * 0.76,
+      this.body[0].y + this.pixels * 0.96,
       this.pixels * 0.22, // rx — keskeny
       this.pixels * 0.08, // ry — magas
       0,
@@ -244,8 +243,8 @@ export class Snake {
     this.ctx.fillStyle = "#ea4695ff";
     this.ctx.beginPath();
     this.ctx.arc(
-      this.startX + this.pixels * 0.76,
-      this.startY + this.pixels * 0.04,
+      this.body[0].x + this.pixels * 0.76,
+      this.body[0].y + this.pixels * 0.04,
       this.pixels * 0.25,
       0,
       Math.PI * 2,
@@ -256,8 +255,8 @@ export class Snake {
     this.ctx.fillStyle = "#f4f4f4ff";
     this.ctx.beginPath();
     this.ctx.arc(
-      this.startX + this.pixels * 0.76,
-      this.startY + this.pixels * 0.04,
+      this.body[0].x + this.pixels * 0.76,
+      this.body[0].y + this.pixels * 0.04,
       this.pixels * 0.18,
       0,
       Math.PI * 2,
@@ -268,8 +267,8 @@ export class Snake {
     this.ctx.fillStyle = "#712121ff";
     this.ctx.beginPath();
     this.ctx.ellipse(
-      this.startX + this.pixels * 0.76,
-      this.startY + this.pixels * 0.04,
+      this.body[0].x + this.pixels * 0.76,
+      this.body[0].y + this.pixels * 0.04,
       this.pixels * 0.22, // rx — keskeny
       this.pixels * 0.08, // ry — magas
       0,
@@ -283,8 +282,8 @@ export class Snake {
     this.ctx.fillStyle = "#ea4695ff";
     this.ctx.beginPath();
     this.ctx.roundRect(
-      this.startX,
-      this.startY,
+      this.body[0].x,
+      this.body[0].y,
       this.pixels,
       this.pixels,
       [50, 50, 0, 0],
@@ -294,8 +293,8 @@ export class Snake {
     // Bal szem
     this.ctx.beginPath();
     this.ctx.arc(
-      this.startX + this.pixels * 0.0025,
-      this.startY + this.pixels * 0.76,
+      this.body[0].x + this.pixels * 0.0025,
+      this.body[0].y + this.pixels * 0.76,
       this.pixels * 0.25,
       0,
       Math.PI * 2,
@@ -306,8 +305,8 @@ export class Snake {
     this.ctx.fillStyle = "#f4f4f4ff";
     this.ctx.beginPath();
     this.ctx.arc(
-      this.startX + this.pixels * 0.0025,
-      this.startY + this.pixels * 0.76,
+      this.body[0].x + this.pixels * 0.0025,
+      this.body[0].y + this.pixels * 0.76,
       this.pixels * 0.18,
       0,
       Math.PI * 2,
@@ -318,8 +317,8 @@ export class Snake {
     this.ctx.fillStyle = "#712121ff";
     this.ctx.beginPath();
     this.ctx.ellipse(
-      this.startX + this.pixels * 0.0025,
-      this.startY + this.pixels * 0.76,
+      this.body[0].x + this.pixels * 0.0025,
+      this.body[0].y + this.pixels * 0.76,
       this.pixels * 0.08, // rx — keskeny
       this.pixels * 0.22, // ry — magas
       0,
@@ -332,8 +331,8 @@ export class Snake {
     this.ctx.fillStyle = "#ea4695ff";
     this.ctx.beginPath();
     this.ctx.arc(
-      this.startX + this.pixels * 0.96,
-      this.startY + this.pixels * 0.76,
+      this.body[0].x + this.pixels * 0.96,
+      this.body[0].y + this.pixels * 0.76,
       this.pixels * 0.25,
       0,
       Math.PI * 2,
@@ -344,8 +343,8 @@ export class Snake {
     this.ctx.fillStyle = "#f4f4f4ff";
     this.ctx.beginPath();
     this.ctx.arc(
-      this.startX + this.pixels * 0.96,
-      this.startY + this.pixels * 0.76,
+      this.body[0].x + this.pixels * 0.96,
+      this.body[0].y + this.pixels * 0.76,
       this.pixels * 0.18,
       0,
       Math.PI * 2,
@@ -356,8 +355,8 @@ export class Snake {
     this.ctx.fillStyle = "#712121ff";
     this.ctx.beginPath();
     this.ctx.ellipse(
-      this.startX + this.pixels * 0.96,
-      this.startY + this.pixels * 0.76,
+      this.body[0].x + this.pixels * 0.96,
+      this.body[0].y + this.pixels * 0.76,
       this.pixels * 0.08, // rx — keskeny
       this.pixels * 0.22, // ry — magas
       0,
@@ -379,18 +378,29 @@ export class Snake {
     }
   }
 
-  drawBodyPart() {
+  drawBodyPart(segment) {
     this.ctx.fillStyle = "#ea4695ff";
     this.ctx.beginPath();
-    this.ctx.roundRect(this.startX, this.startY, this.pixels, this.pixels);
+    this.ctx.roundRect(segment.x, segment.y, this.pixels, this.pixels);
     this.ctx.fill();
   }
 
-  // Logic
+  drawSnake() {
+    this.body.forEach((segment, index) => {
+      if (index === 0) {
+        this.drawHead(); // first element → head
+      } else {
+        this.drawBodyPart(segment); // everything else → body
+      }
+    });
+  }
+
+  // -----** Logic **-----
 
   initSnake() {
-    this.startX = this.canvasWidth / 2;
-    this.startY = this.canvasWidth / 2;
+    this.body = [
+      { x: this.canvasWidth / 2, y: this.canvasWidth / 2 }, // head
+    ];
     this.direction = { x: 1, y: 0 }; // moving down initially
   }
 
@@ -406,13 +416,22 @@ export class Snake {
     }
   }
 
-  update() {
-    // 1. Calculate the new head position using direction
-    this.startX += this.direction.x * this.pixels;
-    this.startY += this.direction.y * this.pixels;
-    // 2. Check for collisions (walls, self)
-    // 3. Check if the snake ate the food
-    // 4. Add new head to the front of the snake array
-    // 5. Remove the tail (unless food was eaten)
+  update(ate) {
+    // 1. Calculate new head position
+    const newHead = {
+      x: this.body[0].x + this.direction.x * this.pixels,
+      y: this.body[0].y + this.direction.y * this.pixels,
+    };
+
+    // 2. Add new head to front
+    this.body.unshift(newHead);
+
+    // 3. Remove tail (for now always — eating logic comes later)
+    if (!ate) {
+      this.body.pop();
+    }
+
+    // 4. Check for collisions (walls, self) — coming later
+    // 5. Check if the snake ate the food — coming later
   }
 }
