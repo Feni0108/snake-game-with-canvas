@@ -434,4 +434,14 @@ export class Snake {
     // 4. Check for collisions (walls, self) — coming later
     // 5. Check if the snake ate the food — coming later
   }
+
+  checkWalls() {
+    const head = this.body[0];
+    return (
+      head.x < 0 ||
+      head.x >= this.canvasWidth ||
+      head.y < 0 ||
+      head.y >= this.canvasWidth
+    );
+  }
 }
