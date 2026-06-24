@@ -24,18 +24,23 @@ function init() {
   mouse.initPos();
 }
 
-function draw() {
-  // 1. Clear the canvas
-  // 2. Draw the snake (loop through its segments)
-  // 3. Draw the food
+function checkIfTheSnakeAte() {
+  return jon.body[0].x === mouse.posX && jon.body[0].y === mouse.posY;
 }
 
 function gameLoop() {
   drawBackground();
+
+  const didTheSnakeAte = checkIfTheSnakeAte();
+
   mouse.drawApple();
-  jon.update();
-  jon.drawHead();
-  draw();
+  jon.update(didTheSnakeAte);
+  jon.drawSnake();
+
+  if (didTheSnakeAte) {
+    mouse.initPos();
+    mouse.drawApple();
+  }
 }
 
 function drawBackground() {
