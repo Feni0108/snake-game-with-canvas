@@ -430,9 +430,6 @@ export class Snake {
     if (!ate) {
       this.body.pop();
     }
-
-    // 4. Check for collisions (walls, self) — coming later
-    // 5. Check if the snake ate the food — coming later
   }
 
   checkWalls() {
@@ -443,5 +440,14 @@ export class Snake {
       head.y < 0 ||
       head.y >= this.canvasWidth
     );
+  }
+
+  checkItself() {
+    const head = this.body[0];
+    return this.body.some((segment, index) => {
+      if (index !== 0) {
+        return head.x === segment.x && head.y === segment.y;
+      }
+    });
   }
 }
