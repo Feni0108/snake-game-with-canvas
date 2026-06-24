@@ -5,6 +5,7 @@ const canvas = /** @type {HTMLCanvasElement} */ (
   document.getElementById("gameCanvas")
 );
 const ctx = canvas.getContext("2d");
+const scoreBoard = document.getElementById("scoreBoard");
 
 const pixels = canvas.width / 10; // size of each cell in pixels
 
@@ -12,6 +13,7 @@ const pixels = canvas.width / 10; // size of each cell in pixels
 // Hint: think of the snake as an array of {x, y} objects
 let snake = [];
 let food = {};
+let score = 0;
 
 let jon = new Snake("Jon", ctx, pixels, canvas.width);
 let mouse = new Apple(ctx, pixels, canvas.width);
@@ -29,24 +31,26 @@ function checkIfTheSnakeAte() {
 }
 
 function gameLoop() {
-  if (jon.checkWalls() || jon.checkItself()) {
-    clearInterval(gameInterval);
-    console.log("GAME OVER");
-    return; // stop executing the rest of gameLoop
-  }
-
   drawBackground();
 
   const didTheSnakeAte = checkIfTheSnakeAte();
 
-  mouse.drawApple();
   jon.update(didTheSnakeAte);
-  jon.drawSnake();
+
+  if (jon.checkWalls() || jon.checkItself()) {
+    clearInterval(gameInterval);
+    console.log("GAME OVER");
+    return;
+  }
 
   if (didTheSnakeAte) {
     mouse.initPos();
-    mouse.drawApple();
+    score++;
+    scoreBoard.textContent = `score: ${score}`;
   }
+
+  mouse.drawApple();
+  jon.drawSnake();
 }
 
 function drawBackground() {
