@@ -54,3 +54,30 @@ body {
   color: #ea4695ff;
   border-color: white;
 }
+
+#gameover {
+  display: none;
+  position: absolute;
+  left: 10;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: "Metamorphous", serif;
+  background-color: #a4b386ff;
+  border-style: solid;
+  border-color: rgb(206, 197, 193);
+}
+
+#gameovertext {
+  padding: 11px;
+}
+
+#startagain {
+  padding: 10px;
+  margin: 10px;
+  font-family: "Metamorphous", serif;
+  background-color: #d4cbc6ff;
+  color: #ea4695ff;
+  border-color: white;
+}
