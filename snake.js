@@ -385,12 +385,88 @@ export class Snake {
     this.ctx.fill();
   }
 
+  drawTailUp(tail) {
+    this.ctx.fillStyle = "#ea4695ff";
+    this.ctx.beginPath();
+    this.ctx.roundRect(
+      tail.x,
+      tail.y,
+      this.pixels,
+      this.pixels,
+      [50, 50, 0, 0],
+    );
+    this.ctx.fill();
+  }
+
+  drawTailDown(tail) {
+    this.ctx.fillStyle = "#ea4695ff";
+    this.ctx.beginPath();
+    this.ctx.roundRect(
+      tail.x,
+      tail.y,
+      this.pixels,
+      this.pixels,
+      [0, 0, 50, 50],
+    );
+    this.ctx.fill();
+  }
+
+  drawTailRight(tail) {
+    this.ctx.fillStyle = "#ea4695ff";
+    this.ctx.beginPath();
+    this.ctx.roundRect(
+      tail.x,
+      tail.y,
+      this.pixels,
+      this.pixels,
+      [0, 50, 50, 0],
+    );
+    this.ctx.fill();
+  }
+
+  drawTailLeft(tail) {
+    this.ctx.fillStyle = "#ea4695ff";
+    this.ctx.beginPath();
+    this.ctx.roundRect(
+      tail.x,
+      tail.y,
+      this.pixels,
+      this.pixels,
+      [50, 0, 0, 50],
+    );
+    this.ctx.fill();
+  }
+
+  drawTail() {
+    if (this.body.length < 2) return; // no tail to draw yet
+
+    const tail = this.body[this.body.length - 1];
+    const beforeTail = this.body[this.body.length - 2];
+
+    const tailDir = {
+      x: (tail.x - beforeTail.x) / this.pixels,
+      y: (tail.y - beforeTail.y) / this.pixels,
+    };
+
+    if (tailDir.x == 1) {
+      this.drawTailRight(tail);
+    } else if (tailDir.x == -1) {
+      this.drawTailLeft(tail);
+    } else if (tailDir.y == 1) {
+      this.drawTailDown(tail);
+    } else if (tailDir.y == -1) {
+      this.drawTailUp(tail);
+    }
+  }
+
   drawSnake() {
     this.body.forEach((segment, index) => {
       if (index === 0) {
         this.drawHead(); // first element → head
+      } else if (index === this.body.length - 1 && this.body.length > 1) {
+        this.drawTail(); // last element → tail
       } else {
-        this.drawBodyPart(segment); // everything else → body
+        this.drawBodyPart(segment); // everything in between → body
       }
     });
   }
