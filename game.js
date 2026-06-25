@@ -6,6 +6,8 @@ const canvas = /** @type {HTMLCanvasElement} */ (
 );
 const ctx = canvas.getContext("2d");
 const scoreBoard = document.getElementById("scoreBoard");
+const startButton = document.getElementById("startButton");
+const userInterface = document.getElementById("overlay");
 
 const pixels = canvas.width / 20; // size of each cell in pixels
 
@@ -22,6 +24,7 @@ let mouse = new Apple(ctx, pixels, canvas.width);
 
 function init() {
   // Set up the initial snake position and place the first food
+  drawBackground();
   jon.initSnake();
   mouse.initPos();
 }
@@ -79,4 +82,8 @@ document.addEventListener("keydown", (e) => {
 
 // --- Start ---
 init();
-const gameInterval = setInterval(gameLoop, 300);
+
+startButton.onclick = function () {
+  userInterface.style.display = "none";
+  setInterval(gameLoop, 300);
+};
