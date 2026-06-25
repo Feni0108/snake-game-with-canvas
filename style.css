@@ -46,7 +46,7 @@ body {
   padding: 11px;
 }
 
-.startButton {
+#startButton {
   padding: 10px;
   margin: 10px;
   font-family: "Metamorphous", serif;
