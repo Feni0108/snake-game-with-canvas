@@ -27,3 +27,30 @@ body {
   font-style: normal;
   font-size: 18px;
 }
+
+#overlay {
+  position: absolute;
+  left: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: "Metamorphous", serif;
+  background-color: #a4b386ff;
+  border-style: solid;
+  border-color: rgb(206, 197, 193);
+}
+
+.title {
+  padding: 11px;
+}
+
+.startButton {
+  padding: 10px;
+  margin: 10px;
+  font-family: "Metamorphous", serif;
+  background-color: #d4cbc6ff;
+  color: #ea4695ff;
+  border-color: white;
+}
