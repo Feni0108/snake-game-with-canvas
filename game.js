@@ -1,9 +1,9 @@
 import { Snake } from "./snake.js";
 import { Apple } from "./apple.js";
 
-const canvas = /** @type {HTMLCanvasElement} */ (
-  document.getElementById("gameCanvas")
-);
+// --- Game State ---
+
+const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 const scoreBoard = document.getElementById("scoreBoard");
 const startButton = document.getElementById("startButton");
@@ -13,11 +13,8 @@ const tryAgain = document.getElementById("startagain");
 
 const pixels = canvas.width / 20; // size of each cell in pixels
 
-// --- Game State ---
-// Hint: think of the snake as an array of {x, y} objects
-let snake = [];
-let food = {};
 let score = 0;
+let gameLoopInterval = 300;
 
 let jon = new Snake("Jon", ctx, pixels, canvas.width);
 let mouse = new Apple(ctx, pixels, canvas.width);
@@ -33,6 +30,12 @@ function init() {
 
 function checkIfTheSnakeAte() {
   return jon.body[0].x === mouse.posX && jon.body[0].y === mouse.posY;
+}
+
+function increaseSpeed() {
+  clearInterval(gameInterval);
+  gameLoopInterval -= 15;
+  gameInterval = setInterval(gameLoop, gameLoopInterval);
 }
 
 function gameLoop() {
@@ -52,6 +55,10 @@ function gameLoop() {
     mouse.initPos();
     score++;
     scoreBoard.textContent = `score: ${score}`;
+
+    if (score % 2 === 0) {
+      increaseSpeed(); // ← restart interval with new speed
+    }
   }
 
   mouse.drawApple();
@@ -88,7 +95,7 @@ let gameInterval;
 
 startButton.onclick = function () {
   userInterface.style.display = "none";
-  gameInterval = setInterval(gameLoop, 300);
+  gameInterval = setInterval(gameLoop, gameLoopInterval);
 };
 
 tryAgain.onclick = function () {
@@ -96,5 +103,5 @@ tryAgain.onclick = function () {
   gameOver.style.display = "none";
   score = 0;
   scoreBoard.textContent = "score: 0";
-  gameInterval = setInterval(gameLoop, 300);
+  gameInterval = setInterval(gameLoop, gameLoopInterval);
 };
