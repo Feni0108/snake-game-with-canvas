@@ -8,6 +8,8 @@ const ctx = canvas.getContext("2d");
 const scoreBoard = document.getElementById("scoreBoard");
 const startButton = document.getElementById("startButton");
 const userInterface = document.getElementById("overlay");
+const gameOver = document.getElementById("gameover");
+const tryAgain = document.getElementById("startagain");
 
 const pixels = canvas.width / 20; // size of each cell in pixels
 
@@ -41,8 +43,8 @@ function gameLoop() {
   jon.update(didTheSnakeAte);
 
   if (jon.checkWalls() || jon.checkItself()) {
+    gameOver.style.display = "flex";
     clearInterval(gameInterval);
-    console.log("GAME OVER");
     return;
   }
 
@@ -82,8 +84,17 @@ document.addEventListener("keydown", (e) => {
 
 // --- Start ---
 init();
+let gameInterval;
 
 startButton.onclick = function () {
   userInterface.style.display = "none";
-  setInterval(gameLoop, 300);
+  gameInterval = setInterval(gameLoop, 300);
+};
+
+tryAgain.onclick = function () {
+  init();
+  gameOver.style.display = "none";
+  score = 0;
+  scoreBoard.textContent = "score: 0";
+  gameInterval = setInterval(gameLoop, 300);
 };
