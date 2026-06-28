@@ -477,7 +477,7 @@ export class Snake {
     this.body = [
       { x: this.canvasWidth / 2, y: this.canvasWidth / 2 }, // head
     ];
-    this.direction = { x: 1, y: 0 }; // moving down initially
+    this.direction = { x: 0, y: 1 }; // moving down initially
   }
 
   changeDirection(newDirection) {
