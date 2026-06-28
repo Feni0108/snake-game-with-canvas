@@ -126,3 +126,40 @@ describe("update", () => {
     expect(snake.body.length).toBe(2);
   });
 });
+
+describe("checkWalls", () => {
+  let snake; // ← declared here so all tests can reach it
+
+  beforeEach(() => {
+    snake = new Snake("test", null, 20, 400); // ← initialized fresh before each test
+    snake.initSnake();
+  });
+
+  test("is inside the canvas", () => {
+    expect(snake.checkWalls()).toBe(false);
+  });
+
+  test("hits the top wall", () => {
+    snake.body[0] = { x: 200, y: -1 };
+
+    expect(snake.checkWalls()).toBe(true);
+  });
+
+  test("hits the right wall", () => {
+    snake.body[0] = { x: 400, y: 200 };
+
+    expect(snake.checkWalls()).toBe(true);
+  });
+
+  test("hits the left wall", () => {
+    snake.body[0] = { x: -1, y: 200 };
+
+    expect(snake.checkWalls()).toBe(true);
+  });
+
+  test("hits the botton wall", () => {
+    snake.body[0] = { x: 200, y: 400 };
+
+    expect(snake.checkWalls()).toBe(true);
+  });
+});
