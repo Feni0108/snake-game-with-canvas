@@ -12,12 +12,11 @@ body {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 #scoreBoard {
   position: absolute; /* positioned relative to game-container */
-  top: 120px; /* sits above the canvas */
+  bottom: 100%; /* sits above the canvas */
   left: 0;
   background-color: #a4b386ff;
   padding: 8px;
@@ -26,6 +25,7 @@ body {
   font-weight: 400;
   font-style: normal;
   font-size: 18px;
+  margin-bottom: 10px;
 }
 
 #overlay {
