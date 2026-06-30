@@ -102,6 +102,7 @@ tryAgain.onclick = function () {
   init();
   gameOver.style.display = "none";
   score = 0;
+  gameLoopInterval = 300; // ← reset speed back to starting value!
   scoreBoard.textContent = "score: 0";
   gameInterval = setInterval(gameLoop, gameLoopInterval);
 };
